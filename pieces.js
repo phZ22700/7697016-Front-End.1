@@ -131,8 +131,10 @@ const pElementDisponible = document.createElement('p')
 pElementDisponible.innerText = "Pièces disponibles:";
 document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
 
+
+let message = "Déplacer le curseur de 0 à 60 €"
 const pAfficheMaxi = document.querySelector('.maxi') // phZ
-pAfficheMaxi.innerHTML = `Prix maximal : 30  €` // phZ
+pAfficheMaxi.innerHTML = `Prix maximal : ${message}` // phZ
  
 
  
