@@ -131,8 +131,14 @@ const pElementDisponible = document.createElement('p')
 pElementDisponible.innerText = "Pièces disponibles:";
 document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
 
+const pAfficheMaxi = document.querySelector('.maxi') // phZ
+pAfficheMaxi.innerHTML = `Prix maximal : 30  €` // phZ
+ 
+
+ 
 const inputPrixMax = document.querySelector('#prix-max')
 inputPrixMax.addEventListener('input', function(){
+    pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
     const piecesFiltrees = pieces.filter(function(piece){
         return piece.prix <= inputPrixMax.value;
     });
