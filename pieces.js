@@ -136,6 +136,7 @@ const pAfficheMaxi = document.querySelector('.maxi') // phZ
 const inputPrixMax = document.querySelector('#prix-max')
 inputPrixMax.value = 30 // phZ pour centrer le curseur à chaque rechargement de page
 //pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
+pAfficheMaxi.innerHTML = `Utiliser le curseur pour filtrer par prix maximal` // phZ
 
 inputPrixMax.addEventListener('input', function(){
     pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ pour afficher la position courante
