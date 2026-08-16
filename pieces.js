@@ -132,13 +132,10 @@ pElementDisponible.innerText = "Pièces disponibles:";
 document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
 
 
-let message = "Déplacer le curseur de 0 à 60 €"
 const pAfficheMaxi = document.querySelector('.maxi') // phZ
-pAfficheMaxi.innerHTML = `Prix maximal : ${message}` // phZ
- 
-
- 
 const inputPrixMax = document.querySelector('#prix-max')
+inputPrixMax.value = 30 // phZ pour centrer le curseur à chaque rechargement de page
+pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
 inputPrixMax.addEventListener('input', function(){
     pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
     const piecesFiltrees = pieces.filter(function(piece){
