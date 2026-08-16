@@ -135,9 +135,10 @@ document.querySelector('.disponibles').appendChild(pElementDisponible).appendChi
 const pAfficheMaxi = document.querySelector('.maxi') // phZ
 const inputPrixMax = document.querySelector('#prix-max')
 inputPrixMax.value = 30 // phZ pour centrer le curseur à chaque rechargement de page
-pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
+//pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
+
 inputPrixMax.addEventListener('input', function(){
-    pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
+    pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ pour afficher la position courante
     const piecesFiltrees = pieces.filter(function(piece){
         return piece.prix <= inputPrixMax.value;
     });
