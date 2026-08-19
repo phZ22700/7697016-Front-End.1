@@ -131,11 +131,21 @@ const pElementDisponible = document.createElement('p')
 pElementDisponible.innerText = "Pièces disponibles:";
 document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
 
+
+
+
+
+const pAfficheMaxi = document.querySelector('.maxi') // phZ
 const inputPrixMax = document.querySelector('#prix-max')
+inputPrixMax.value = 30 // phZ pour centrer le curseur à chaque rechargement de page
+pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
 inputPrixMax.addEventListener('input', function(){
+    pAfficheMaxi.innerHTML = `Prix maximal : ${inputPrixMax.value} €` // phZ
     const piecesFiltrees = pieces.filter(function(piece){
         return piece.prix <= inputPrixMax.value;
     });
     document.querySelector(".fiches").innerHTML = "";
     genererPieces(piecesFiltrees);  
 })
+
+
