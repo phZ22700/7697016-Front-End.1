@@ -141,13 +141,14 @@ pElementDisponible.innerText = "Pièces disponibles:";
 document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
 
 const inputPrixMax = document.querySelector('#prix-max')
-const positionDepartCurseur = 30 // position du curseur au rechargement de la page
-inputPrixMax.value = positionDepartCurseur // position du curseur au rechargement de la page
+const afficheMaxi = document.querySelector(".maxi") //phZ
+const positionDepartCurseur = 30 // phZ :position du curseur au rechargement de la page
+inputPrixMax.value = positionDepartCurseur // phZ
+afficheMaxi.innerHTML = `Prix maxi : ${inputPrixMax.value} €` // phZ
 
 
 inputPrixMax.addEventListener('input', function(){
-const afficheMaxi = document.querySelector(".maxi")
-afficheMaxi.innerHTML = `Prix maxi : ${inputPrixMax.value} €`
+afficheMaxi.innerHTML = `Prix maxi : ${inputPrixMax.value} €` // phZ
     const piecesFiltrees = pieces.filter(function(piece){
         return piece.prix <= inputPrixMax.value;
     });
