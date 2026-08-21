@@ -23,8 +23,21 @@
 				<br>
 				<button class="btn-nodesc">Filtrer les pièces sans description</button>
 				<br>
-				<p class =" maxi">Prix maxi : bouger le curseur</p> <!--phZ-->
+				<p class =" maxi"></p> <!--phZ-->
 				<input type="range" name="prix-max" id="prix-max" min="0" max="60" step="5">
+				
+				<!-- code a ajouter pour envoyer les avis au serveur-->
+				<h3>Ajouter un avis</h3>
+				<form class="formulaire-avis">
+					Identifiant de la pièce :<br>
+					<input type="number" name="piece-id"><br>
+					Nom d'utilisateur :<br>
+					<input type="text" name="utilisateur"><br>
+					Avis :<br>
+					<input type="text" name="commentaire"><br>
+					<button>Envoyer</button>
+				</form>
+
 			</section>
 
 			<!-- Fiches produits -->

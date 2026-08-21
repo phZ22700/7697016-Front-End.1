@@ -141,7 +141,10 @@ pElementDisponible.innerText = "Pièces disponibles:";
 document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
 
 const inputPrixMax = document.querySelector('#prix-max')
-inputPrixMax.value = 30 // position du curseur au rechargement de la page
+const positionDepartCurseur = 30 // position du curseur au rechargement de la page
+inputPrixMax.value = positionDepartCurseur // position du curseur au rechargement de la page
+
+
 inputPrixMax.addEventListener('input', function(){
 const afficheMaxi = document.querySelector(".maxi")
 afficheMaxi.innerHTML = `Prix maxi : ${inputPrixMax.value} €`
