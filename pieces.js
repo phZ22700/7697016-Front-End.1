@@ -1,7 +1,7 @@
 
 import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
 
-// Récupération des pièces depuis le fichier JSON
+// Récupération des pièces depuis le fichier l'API HTTP
 const reponse = await fetch('http://localhost:8081/pieces');
 const pieces = await reponse.json();
 ajoutListenerEnvoyerAvis()
