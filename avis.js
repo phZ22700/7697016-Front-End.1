@@ -21,8 +21,8 @@ export function ajoutListenersAvis() {
       const pieceElement = event.target.parentElement;
       const avisElement = document.createElement("p");
       for (let i = 0; i < avis.length; i++) {
-         avisElement.innerHTML += `${avis[i].utilisateur}: ${avis[i].commentaire} <br>`;
-         }
+         avisElement.innerHTML += `${avis[i].utilisateur}: ${avis[i].commentaire} ${avis[i].nbEtoiles} * <br>`;
+         } // rajout phZ affichage du nombre d'étoiles
          pieceElement.appendChild(avisElement)
      });
  
