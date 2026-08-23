@@ -1,9 +1,25 @@
 
 import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
+// Récupération des pieces du stockage local
+let pieces = window.localStorage.getItem('pieces')
+// Récupération des pièces de l'API HTTP
+if (pieces === null) {
+    const reponse = await fetch('http://localhost:8081/pieces');
+    const pieces = await reponse.json();
+    console.log(`branche if --- pieces = ${pieces}`)
+    const valeurPieces = JSON.stringify("pieces", valeurPieces)
+    console.log(`branche if --- valeur pieces = ${valeurPieces}`)
+    window.localStorage.setItem('pieces, valeurPieces')
 
-// Récupération des pièces depuis le fichier l'API HTTP
-const reponse = await fetch('http://localhost:8081/pieces');
-const pieces = await reponse.json();
+} else {
+    pieces = JSON.parse(pieces)
+    console.log(`branche else --- pieces = ${pieces}`)
+}
+
+
+
+
+
 ajoutListenerEnvoyerAvis()
 
 
@@ -101,7 +117,7 @@ for(let i = pieces.length -1 ; i >= 0; i--){
         noms.splice(i,1);
     }
 }
-console.log(noms)
+//console.log(noms)
 //Création de l'en-tête
 
 const pElement = document.createElement('p')
@@ -156,4 +172,9 @@ afficheMaxi.innerHTML = `Prix maxi : ${inputPrixMax.value} €` // phZ
     });
     document.querySelector(".fiches").innerHTML = "";
     genererPieces(piecesFiltrees);  
+})
+
+const boutonMAJ = document.querySelector(".btn-maj")
+boutonMAJ.addEventlisterner("click", function (){
+    window.localStorage.removeItem('pieces')
 })

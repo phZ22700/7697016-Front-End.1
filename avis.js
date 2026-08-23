@@ -6,24 +6,23 @@ export function ajoutListenersAvis() {
  
     for (let i = 0; i < piecesElements.length; i++) {
  
-     piecesElements[i].addEventListener("click", async function (event) {
+        piecesElements[i].addEventListener("click", async function (event) {
  
       //  const id = event.target.dataset.id;
       //  fetch(`http://localhost:8081/pieces/${id}/avis`);
       // ajout-remplacement P3C2
       //const id = event.target.dataset.id;
       //const reponse = await fetch("http://localhost:8081/pieces/" + id + "/avis");
-      const id = event.target.dataset.id;
-      const reponse = await fetch("http://localhost:8081/pieces/" + id + "/avis");
-      const avis = await reponse.json();
-
-
-      const pieceElement = event.target.parentElement;
-      const avisElement = document.createElement("p");
-      for (let i = 0; i < avis.length; i++) {
-         avisElement.innerHTML += `${avis[i].utilisateur}: ${avis[i].commentaire} ${avis[i].nbEtoiles} * <br>`;
-         } // rajout phZ affichage du nombre d'étoiles
-         pieceElement.appendChild(avisElement)
+        const id = event.target.dataset.id;
+        const reponse = await fetch("http://localhost:8081/pieces/" + id + "/avis");
+        const avis = await reponse.json();
+        
+        const pieceElement = event.target.parentElement;
+        const avisElement = document.createElement("p");
+        for (let i = 0; i < avis.length; i++) {
+             avisElement.innerHTML += `${avis[i].utilisateur}: ${avis[i].commentaire} ${avis[i].nbEtoiles} * <br>`;
+            } // rajout phZ affichage du nombre étoiles
+        pieceElement.appendChild(avisElement)
      });
  
     }
