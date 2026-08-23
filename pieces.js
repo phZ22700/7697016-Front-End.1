@@ -1,5 +1,5 @@
 
-import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis } from "./avis.js";
 // Récupération des pieces du stockage local
 let pieces = window.localStorage.getItem('pieces')
 // Récupération des pièces de l'API HTTP
@@ -10,6 +10,8 @@ if (pieces === null) {
     const valeurPieces = JSON.stringify("pieces", valeurPieces)
     console.log(`branche if --- valeur pieces = ${valeurPieces}`)
     window.localStorage.setItem('pieces, valeurPieces')
+    console.log(`branche if --- avis = ${avis}`)
+    window.localStorage.setItem('avis', avis)
 
 } else {
     pieces = JSON.parse(pieces)
@@ -66,6 +68,17 @@ function genererPieces(pieces){
 }
 
 genererPieces(pieces);
+
+
+for (let i = 0; i < pieces.length ; i ++) {
+    const id = pieces[i].id
+    const avisJSON = window.localStorage.getItem(`avis-piece-${id}`)
+    const avis = JSON.parse(avisJSON)
+    if (avis !== null) {
+        const pieceElement = querySelector(`article[data-id = "${id}"]`)
+        afficherAvis(pieceElement, avis)
+    }
+}
 
  //gestion des bouttons 
 const boutonTrier = document.querySelector(".btn-trier");
