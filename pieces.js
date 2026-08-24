@@ -1,24 +1,19 @@
 
 import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis } from "./avis.js";
-// Récupération des pieces du stockage local
+// Récupération des pièces éventuellement stockées dans le localStorage
 let pieces = window.localStorage.getItem('pieces')
-// Récupération des pièces de l'API HTTP
-if (pieces === null) {
+if (pieces === null){
+    // Récupération des pièces depuis le fichier l'API HTTP
     const reponse = await fetch('http://localhost:8081/pieces');
-    const pieces = await reponse.json();
-    console.log(`branche if --- pieces = ${pieces}`)
-    const valeurPieces = JSON.stringify("pieces", valeurPieces)
-    console.log(`branche if --- valeur pieces = ${valeurPieces}`)
-    window.localStorage.setItem('pieces, valeurPieces')
-    console.log(`branche if --- avis = ${avis}`)
-    window.localStorage.setItem('avis', avis)
-
-} else {
-    pieces = JSON.parse(pieces)
-    console.log(`branche else --- pieces = ${pieces}`)
-}
-
-
+    pieces = await reponse.json();
+    //Transformation des pièces en JSON
+    const valeurPieces = JSON.stringify(pieces)
+    //Stockage des informations dans le localStorage
+    window.localStorage.setItem("pieces", valeurPieces)
+    } else {
+        // Reconstruction en mémoire
+        pieces = JSON.parse(pieces)
+    }
 
 
 
@@ -68,17 +63,6 @@ function genererPieces(pieces){
 }
 
 genererPieces(pieces);
-
-
-for (let i = 0; i < pieces.length ; i ++) {
-    const id = pieces[i].id
-    const avisJSON = window.localStorage.getItem(`avis-piece-${id}`)
-    const avis = JSON.parse(avisJSON)
-    if (avis !== null) {
-        const pieceElement = querySelector(`article[data-id = "${id}"]`)
-        afficherAvis(pieceElement, avis)
-    }
-}
 
  //gestion des bouttons 
 const boutonTrier = document.querySelector(".btn-trier");
@@ -130,7 +114,7 @@ for(let i = pieces.length -1 ; i >= 0; i--){
         noms.splice(i,1);
     }
 }
-//console.log(noms)
+console.log(noms)
 //Création de l'en-tête
 
 const pElement = document.createElement('p')
@@ -187,7 +171,9 @@ afficheMaxi.innerHTML = `Prix maxi : ${inputPrixMax.value} €` // phZ
     genererPieces(piecesFiltrees);  
 })
 
-const boutonMAJ = document.querySelector(".btn-maj")
-boutonMAJ.addEventlisterner("click", function (){
-    window.localStorage.removeItem('pieces')
+
+//Ajout du listener pour mettre à jour les donées du localStorage
+const boutonMettreAJour = document.querySelector(".btn-maj")
+boutonMettreAJour.addEventListener("click", function() {
+    window.localStorage.removeItem("pieces")
 })
