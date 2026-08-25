@@ -1,0 +1,4 @@
+git clone https://github.com/OpenClassrooms-Student-Center/7697016-Back-End.git api-http 
+cd api-http 
+npm install 
+npm start
