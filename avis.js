@@ -146,7 +146,7 @@ export async function afficherGraphiqueAvis() {
         datasets: [{
             label: "Nombre de commentaires",
             data: [nbCommentairesDispo, nbCommentairesNonDispo],
-            backgroundColor: "rgba(0, 230, 255, 1)", // turquoise
+            backgroundColor: "rgba(127, 127, 127, 1)", // 
         }],
     };
 
