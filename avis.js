@@ -62,11 +62,18 @@ export async function ajoutListenerEnvoyerAvis() {
 
 export async function afficherGraphiqueAvis() {
     // Calcul du nombre de commentaires par quantité d'étoiles attribuées
-    const avis = await fetch("http://localhost:8081/avis").then(avis => avis.json()); // autre forme de programmation asynchrone
+    // asynchrone avec await --- then
+    // const avis = await fetch("http://localhost:8081/avis").then(avis => avis.json()); // autre forme de programmation asynchrone
+    //
+    // asychrone avec await seulement
+    const reponse = await fetch("http://localhost:8081/avis");
+    const avis = await reponse.json();
+
+    //
     const nb_commentaires = [0, 0, 0, 0, 0];
     for (let commentaire of avis) {
         nb_commentaires[commentaire.nbEtoiles - 1]++;
-        console.log(nb_commentaires)
+    //    console.log(nb_commentaires)
     }
 
     // Légende qui s'affichera sur la gauche à côté de la barre horizontale
@@ -100,15 +107,23 @@ export async function afficherGraphiqueAvis() {
 
 
     // Récupératon des pièces dans le localStorage
+    //const piecesJSON = window.localStorage.getItem("pieces");
     
+    // Récupération des pièces dans l'API
+    const reponseAPI = await fetch("http://localhost:8081/pieces");
+    const piecesAPI = await reponseAPI.json();
+    console.log("réponse API", reponseAPI)
+    console.log("pièces API", piecesAPI)
 
-    // Récupération des pièces depuis le localStorage
-    const piecesJSON = window.localStorage.getItem("pieces");
+    
     //const pieces = piecesJSON ? JSON.parse(piecesJSON) : [];
-    const pieces = JSON.parse(piecesJSON)
+    // const pieces = JSON.parse(piecesJSON)
     // Calcul du nombre de commentaires
     let nbCommentairesDispo = 0;
     let nbCommentairesNonDispo = 0;
+    let pieces = piecesAPI
+    console.log("pièces", pieces)
+
     //if(pieces.length > 0){
     for (let i = 0; i < avis.length; i++) {
         const piece = pieces.find(p => p.id === avis[i].pieceId);
@@ -123,7 +138,7 @@ export async function afficherGraphiqueAvis() {
     }
 
     // Légende qui s'affichera sur la gauche à côté de la barre horizontale
-    const labelsDispo = ["Disponibles", "Non dispo."];
+    const labelsDispo = ["... disponibles", "... indisponibles"];
 
     // Données et personnalisation du graphique
     const dataDispo = {
